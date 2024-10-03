@@ -1,6 +1,7 @@
 <?php
     session_start();
     include_once $_SERVER['DOCUMENT_ROOT'] . '/byteCare/helpers/url.php';
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/byteCare/templates/header.php';
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
@@ -20,34 +21,23 @@
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user = $_POST['user'];
         $password = $_POST['password'];
+        $name = $_POST['name'];
 
-
-        // Verifica se o campo usuário está preenchido
-        if (empty($user) || empty($password)) {
+        // Verifica se os campos estão preenchidos
+        if (empty($user) || empty($password) || empty($name)) {
             $error = "Preencha todos os campos.";
         } else {
-            // Prepara a query para evitar SQL injection
-            $stmt = $connect->prepare("SELECT ID_FUN, PASSWORD FROM EMPLOYEES WHERE ID_FUN = ?");
-            $stmt->bind_param("s", $user);
-            $stmt->execute();
-            $result = $stmt->get_result();
+            // Hash da senha
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            if ($result->num_rows > 0) {
-                $userData = $result->fetch_assoc();
+            // Insere o novo usuário no banco de dados
+            $stmt = $connect->prepare("INSERT INTO EMPLOYEES (NAME, PASSWORD) VALUES (?, ?)");
+            $stmt->bind_param("ss", $user, $hashedPassword);
 
-                // Verifica a senha utilizando password_verify
-                if (password_verify($password, $userData['PASSWORD'])) {
-                    $_SESSION['user_id'] = $userData['ID_FUN'];
-                    echo "Login realizado com sucesso!";
-
-                    // Redireciona para outra página após login bem-sucedido
-                    header('Location: http://localhost/bytecare/cadastro/cadastro.php');
-                    exit;
-                } else {
-                    $error = "Senha incorreta.";
-                }
+            if ($stmt->execute()) {
+                ?><div class="register-class" align="center"><h4><?php echo "Usuário cadastrado com sucesso!"; ?></h4></div><?php
             } else {
-                $error = "Usuário não encontrado, entre em contato com o administrador.";
+                $error = "Erro ao cadastrar o usuário.";
             }
 
             $stmt->close();
@@ -62,21 +52,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="/bytecare/css/loginStyle.css">
+    <title>Cadastro de Usuário</title>
+    <link rel="stylesheet" href="/bytecare/css/cadastroUserStyle.css">
 </head>
 <body>
-    <div class="login-class" align="center">
+    <div class="register-class" align="center">
         <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
-            <h4>Faça seu Login</h4>
+            <h4>Cadastre um novo usuário</h4>
             <div class="buttonUser-class">
                 <input type="text" name="user" id="user" placeholder="Usuário" required>
+            </div>
+            <div class="buttonName-class">
+                <input type="text" name="name" id="name" placeholder="name">
             </div>
             <div class="buttonPassword-class">
                 <input type="password" name="password" id="password" placeholder="Senha" required>
             </div>
             <div class="submit-class">
-                <input type="submit" value="Logar">
+                <input type="submit" value="Cadastrar">
             </div>
             <?php
                 if (isset($error)) {
@@ -87,3 +80,7 @@
     </div>
 </body>
 </html>
+
+<?php 
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/byteCare/templates/footer.php';
+?>

@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>cadastro</title>
     <!-- LINKS STYLES -->
-    <link rel="stylesheet" href="http://localhost/bytecare/css/headerStyle.css">
+    <link rel="stylesheet" href="/bytecare/css/headerStyle.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -31,19 +31,19 @@
                 <li class="drop">
                     <a href="http://26.44.118.123/bytecare/cadastro/cadastro.php">Cadastros</a>
                     <ul class="dropdown">
-                        <li><a href="http://26.44.118.123/bytecare/cadastro/cadastroClient/cadClient.php">CAD. DE CLIENTE</a></li>
-                        <li><a href="http://26.44.118.123/bytecare/cadastro/cadastroClient/cadOs.php">CAD. DE OS</a></li>
-                        <li><a href="http://26.44.118.123/bytecare/cadastro/cadastroClient/cadUser.php">CAD. DE USUÁRIOS</a></li>
+                        <li><a href="#">CAD. DE CLIENTE</a></li>
+                        <li><a href="#">CAD. DE OS</a></li>
+                        <li><a href="http://26.44.118.123/bytecare/cadastro/cadastroUser.php">CAD. DE USUÁRIOS</a></li>
                     </ul>
                 </li>
                 <li class="drop">
                     <a href="#">Relatórios</a>
                     <ul class="dropdown">
-                        <li><a href="">CLIENTES</a></li>
-                        <li><a href="">SERVIÇOS</a></li>
+                        <li><a href="#">CLIENTES</a></li>
+                        <li><a href="#">SERVIÇOS</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Sobre</a></li>
+                <li><a href="http://26.44.118.123/bytecare/sobre/sobre.php">Sobre</a></li>
                 <li><a href="http://26.44.118.123/bytecare/login.php">Sair</a></li>
             </ul>
         </nav>

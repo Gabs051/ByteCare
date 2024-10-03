@@ -7,7 +7,7 @@
 </head>
 <body>
     <footer>
-        <p class="main">
+        <p class="main" align="center">
             2024 © ByteCare
         </p>
     </footer>
