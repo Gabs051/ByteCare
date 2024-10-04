@@ -22,17 +22,18 @@
         $user = $_POST['user'];
         $password = $_POST['password'];
         $name = $_POST['name'];
+        $department = $_POST['department'];
 
         // Verifica se os campos estão preenchidos
-        if (empty($user) || empty($password) || empty($name)) {
+        if (empty($user) || empty($password) || empty($name) || empty($department)) {
             $error = "Preencha todos os campos.";
         } else {
             // Hash da senha
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
             // Insere o novo usuário no banco de dados
-            $stmt = $connect->prepare("INSERT INTO EMPLOYEES (NAME, PASSWORD) VALUES (?, ?)");
-            $stmt->bind_param("ss", $user, $hashedPassword);
+            $stmt = $connect->prepare("INSERT INTO EMPLOYEES (ID_FUN, NAME, PASSWORD, DEPARTMENT) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param("ssss", $user, $name, $hashedPassword, $department);
 
             if ($stmt->execute()) {
                 ?><div class="register-class" align="center"><h4><?php echo "Usuário cadastrado com sucesso!"; ?></h4></div><?php
@@ -53,7 +54,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Usuário</title>
-    <link rel="stylesheet" href="/bytecare/css/cadastroUserStyle.css">
+    <link rel="stylesheet" href="/bytecare/css/cadUser.css">
 </head>
 <body>
     <div class="register-class" align="center">
@@ -63,10 +64,18 @@
                 <input type="text" name="user" id="user" placeholder="Usuário" required>
             </div>
             <div class="buttonName-class">
-                <input type="text" name="name" id="name" placeholder="name">
+                <input type="text" name="name" id="name" placeholder="Nome" required>
             </div>
             <div class="buttonPassword-class">
                 <input type="password" name="password" id="password" placeholder="Senha" required>
+            </div>
+            <div class="buttonDepartment-class">
+                <select name="department" id="department" required>
+                    <option value="">Selecione o Departamento</option>
+                    <option value="Administrador">Administrador</option>
+                    <option value="Secretaria">Secretaria</option>
+                    <option value="Técnico">Técnico</option>
+                </select>
             </div>
             <div class="submit-class">
                 <input type="submit" value="Cadastrar">

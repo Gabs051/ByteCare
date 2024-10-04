@@ -41,7 +41,7 @@
                     echo "Login realizado com sucesso!";
 
                     // Redireciona para outra página após login bem-sucedido
-                    header('Location: http://localhost/bytecare/cadastro/cadastro.php');
+                    header('Location: http://26.44.118.123/bytecare/cadastro/cadastro.php');
                     exit;
                 } else {
                     $error = "Senha incorreta.";
