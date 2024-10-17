@@ -1,21 +1,9 @@
 <?php
-    session_start();
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/byteCare/helpers/db.php';
     include_once $_SERVER['DOCUMENT_ROOT'] . '/byteCare/helpers/url.php';
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
-
-    $servername = "localhost";
-    $dbname = "bytecare";
-    $usernamedb = "gabs";
-    $passworddb = "gabs123";
-
-    // Conexão com o banco de dados
-    $connect = mysqli_connect($servername, $usernamedb, $passworddb, $dbname);
-
-    if (!$connect) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user = $_POST['user'];
@@ -27,7 +15,7 @@
             $error = "Preencha todos os campos.";
         } else {
             // Prepara a query para evitar SQL injection
-            $stmt = $connect->prepare("SELECT ID_FUN, PASSWORD FROM EMPLOYEES WHERE ID_FUN = ?");
+            $stmt = $connect->prepare("SELECT ID, PASSWORD FROM EMPLOYEES WHERE ID = ?");
             $stmt->bind_param("s", $user);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -63,7 +51,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="/bytecare/css/loginStyle.css">
+    <link rel="stylesheet" href="/bytecare/css/loginStyle.css?v=1.0">
 </head>
 <body>
     <div class="login-class" align="center">

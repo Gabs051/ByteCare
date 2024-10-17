@@ -1,5 +1,5 @@
 * {
-    margin: 0;
+    margin: auto;
     padding: 0;
     box-sizing: border-box;
 }
@@ -8,37 +8,44 @@ body {
     font-family: 'Fira Code', sans-serif;
     background-color: #363062;
     color: #F5F5F5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
-    background-size: cover;
+    display: grid; /* Alterado para flex para centralizar o conteúdo */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    place-items: center;
 }
 
 .register-class {
     background-color: #4D4C7D;
     padding: 40px;
     border-radius: 12px;
-    box-shadow: 0px 0px 40px rgb(255, 255, 255);
-    box-shadow: 0px 0px 40px rgb(54, 48, 98);
+    box-shadow: 0px 0px 40px rgba(54, 48, 98, 0.5); /* Leve transparência na sombra */
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
     text-align: center;
 }
 
-input[type="text"], input[type="password"], select {
-    width: 100%;
-    padding: 12px;
+h4 {
+    margin-bottom: 20px; /* Adicionado espaçamento abaixo do título */
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+select {
+    width: 150%;
+    mas-width: 600px;
+    padding: 16px;
     margin: 10px 0;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     background-color: #F5F5F5;
     color: #363062;
-    font-size: 16px;
+    font-size: 17px;
     outline: none;
 }
 
-button {
+input[type="submit"] {
     width: 100%;
     padding: 12px;
     margin-top: 20px;
@@ -51,12 +58,8 @@ button {
     transition: background-color 0.3s ease;
 }
 
-button:hover {
+input[type="submit"]:hover {
     background-color: #ffae42;
-}
-
-button i {
-    margin-right: 5px;
 }
 
 @media (max-width: 600px) {
@@ -65,7 +68,7 @@ button i {
         width: 90%;
     }
 
-    button {
+    input[type="submit"] {
         font-size: 16px;
     }
 }

@@ -20,7 +20,7 @@ body {
     background-color: #4D4C7D; /* Fundo médio para a caixa de login */
     padding: 40px;
     border-radius: 12px;
-    box-shadow: 0px 0px 40px #302f58; /* Brilho com a cor mais vibrante */
+    box-shadow: 0px 0px 40px #ff7300,0px 0px 40px #5443d4; /* Brilho com a cor mais vibrante */
     width: 100%;
     max-width: 400px;
     text-align: center;
@@ -39,14 +39,14 @@ input[type="text"], input[type="password"] {
 }
 
 input[type="text"]:focus, input[type="password"]:focus {
-    border: 2px solid #302f58; /* Borda vibrante ao focar nos campos */
+    border: 2px solid #1f1f58; /* Borda vibrante ao focar nos campos */
 }
 
 input[type="submit"] {
     width: 100%;
     padding: 12px;
     margin-top: 20px;
-    background-color: #F99417; /* Botão com cor vibrante */
+    background-color: #fdb154; /* Botão com cor vibrante */
     color: #F5F5F5; /* Texto do botão com cor suave */
     border: none;
     border-radius: 5px;
@@ -56,7 +56,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #be7317; /* Cor mais escura ao passar o mouse */
+    background-color: #ff8c00; /* Cor mais escura ao passar o mouse */
 }
 
 @media (max-width: 600px) {

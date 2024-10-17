@@ -1,6 +1,7 @@
 <?php 
     include_once $_SERVER['DOCUMENT_ROOT'] . '/byteCare/helpers/url.php';
     include_once $_SERVER['DOCUMENT_ROOT'] . '/byteCare/templates/header.php';
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/byteCare/templates/authy.php';
 ?>
 
 <!DOCTYPE html>
