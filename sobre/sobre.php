@@ -1,6 +1,4 @@
 <?php 
-    session_start();
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/byteCare/helpers/url.php';
     include_once $_SERVER['DOCUMENT_ROOT'] . '/byteCare/templates/header.php';
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);

@@ -1,6 +1,4 @@
 <?php 
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/byteCare/helpers/url.php';
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/byteCare/helpers/db.php';
     include_once $_SERVER['DOCUMENT_ROOT'] . '/byteCare/templates/header.php';
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
@@ -39,7 +37,7 @@
 ?>
 
 <head>
-    <link rel="stylesheet" href="/bytecare/css/cadUser.css?v=1.0">
+    <link rel="stylesheet" href="/bytecare/css/user.css?v=1.0">
 </head>
 <body>
     <div class="register-class">

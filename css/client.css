@@ -1,5 +1,5 @@
 * {
-    margin: auto;
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
@@ -9,34 +9,57 @@ body {
     background-color: #363062;
     color: #F5F5F5;
     height: 100vh;
-    display: grid; /* Alterado para flex para centralizar o conteúdo */
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
+    display: grid;
+    justify-content: center;
+    align-items: center;
     place-items: center;
 }
 
-.register-class {
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #F99417;
+    color: #FFF;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 10px;
+}
+
+button:hover {
+    background-color: #FFAE42;
+}
+
+.form-container {
     background-color: #4D4C7D;
     padding: 40px;
     border-radius: 12px;
-    box-shadow: 0px 0px 40px rgba(54, 48, 98, 0.5); /* Leve transparência na sombra */
+    box-shadow: 0px 0px 40px rgba(54, 48, 98, 0.5);
     width: 100%;
     max-width: 500px;
     text-align: center;
+    display: none;
 }
 
-h4 {
-    margin-bottom: 20px; /* Adicionado espaçamento abaixo do título */
+.form-container h2 {
+    margin-bottom: 20px;
 }
 
 input[type="text"],
 input[type="password"],
 input[type="email"],
+input[type="number"],
+input[type="submit"],
 select {
-    width: 150%;
-    mas-width: 600px;
+    width: calc(100% - 32px);
     padding: 16px;
-    margin: 10px 0;
+    margin: 15px 0;
     border: none;
     border-radius: 6px;
     background-color: #F5F5F5;
@@ -46,26 +69,23 @@ select {
 }
 
 input[type="submit"] {
-    width: 100%;
-    padding: 12px;
-    margin-top: 20px;
     background-color: #F99417;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
+    color: #FFF;
     font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
 input[type="submit"]:hover {
-    background-color: #ffae42;
+    background-color: #FFAE42;
 }
 
 @media (max-width: 600px) {
-    .register-class {
+    .form-container {
         padding: 20px;
         width: 90%;
+    }
+
+    button {
+        width: 100%;
     }
 
     input[type="submit"] {

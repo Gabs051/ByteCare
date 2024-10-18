@@ -25,11 +25,11 @@
 
                 // Verifica a senha utilizando password_verify
                 if (password_verify($password, $userData['PASSWORD'])) {
-                    $_SESSION['user_id'] = $userData['ID_FUN'];
+                    $_SESSION['user_id'] = $userData['ID'];
                     echo "Login realizado com sucesso!";
 
                     // Redireciona para outra página após login bem-sucedido
-                    header('Location: http://26.44.118.123/bytecare/cadastro/cadastro.php');
+                    header('Location: http://26.44.118.123/bytecare/sobre/sobre.php');
                     exit;
                 } else {
                     $error = "Senha incorreta.";
