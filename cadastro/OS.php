@@ -2,11 +2,11 @@
 include_once $_SERVER['DOCUMENT_ROOT'] . '/byteCare/templates/header.php';
 
 try {
-    $stmt = $connect->prepare("SELECT * FROM client");
+    $stmt = $connect->prepare("SELECT * FROM service_order");
     $stmt->execute();
-    $clients = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    $OS = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 } catch (Exception $e) {
-    echo "Erro ao carregar clientes: " . $e->getMessage();
+    echo "Erro ao carregar Ordem de Serviços: " . $e->getMessage();
 }
 ?>
 
@@ -15,36 +15,52 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Client Manager</title>
-    <link rel="stylesheet" href="/bytecare/css/client.css?v=1.0">
+    <title>OS Manager</title>
+    <link rel="stylesheet" href="/bytecare/css/Os.css?v=1.0">
 </head>
 <body>
-    <h1 class="text-center">Gerenciar Clientes</h1>
+    <h1 class="text-center">Gerenciar Ordem de Serviços</h1>
     <div class="text-center">
-        <a href="<?= $BASE_URL ?>createClient.php" class="create-button">
-            <button>Criar Cliente</button>
+        <a href="<?= $BASE_URL ?>createOS.php" class="create-button">
+            <button>Criar OS</button>
         </a>
     </div>
-    <?php if (!empty($clients)) { ?>
-        <table class="table" id="clients-table">
+    <?php if (!empty($OS)) { ?>
+        <table class="table" id="OS-table">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Nome</th>
-                    <th>Sobrenome</th>
-                    <th>Telefone</th>
+                    <th>Equipamento</th>
+                    <th>Descriçao do Equipamento</th>
+                    <th>Data de Entrada</th>
+                    <th>Previsão Data de Entrega</th>
+                    <th>Técnico Responsável</th>
+                    <th>Status do Serviço</th>
+                    <th>Custo</th>
+                    <th>Tipo de Serviço</th>
+                    <th>Data de Saída</th>
+                    <th>Id Cliente</th>
+                    <th>Id Funcionário</th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody id="table-body">
-                <?php foreach ($clients as $client) { ?>
+                <?php foreach ($OS as $service_order) { ?>
                     <tr>
-                        <td class="col-id"><?= htmlspecialchars($client['id']) ?></td>
-                        <td><?= htmlspecialchars($client['NAME']) ?></td>
-                        <td><?= htmlspecialchars($client['LASTNAME']) ?></td>
-                        <td><?= htmlspecialchars($client['PHONE']) ?></td>
+                        <td class="col-id"><?= htmlspecialchars($service_order['id']) ?></td>
+                        <td><?= htmlspecialchars($service_order['equipment']) ?></td>
+                        <td><?= htmlspecialchars($service_order['equipment_description']) ?></td>
+                        <td><?= htmlspecialchars($service_order['entry_date']) ?></td>
+                        <td><?= htmlspecialchars($service_order['expected_delivery_date']) ?></td>
+                        <td><?= htmlspecialchars($service_order['responsible_tech']) ?></td>
+                        <td><?= htmlspecialchars($service_order['stat_service']) ?></td>
+                        <td><?= htmlspecialchars($service_order['cust']) ?></td>
+                        <td><?= htmlspecialchars($service_order['type_service']) ?></td>
+                        <td><?= htmlspecialchars($service_order['delivery_date']) ?></td>
+                        <td><?= htmlspecialchars($service_order['id_client']) ?></td>
+                        <td><?= htmlspecialchars($service_order['id_employee']) ?></td>
                         <td class="actions">
-                            <a href="<?= $BASE_URL ?>edit.php?id=<?= htmlspecialchars($client['id']) ?>">
+                            <a href="<?= $BASE_URL ?>edit.php?id=<?= htmlspecialchars($service_order['id']) ?>">
                                 <i class="fas fa-edit edit-icon"></i>
                             </a>
                         </td>
@@ -54,7 +70,7 @@ try {
             <div class="pagination" id="pagination"></div>
         </table>
     <?php } else { ?>
-        <p class="empty-list-text">Ainda não há clientes cadastrados! 
+        <p class="empty-list-text">Ainda não há Ordem de Serviços cadastradas! 
             <a href="<?= $BASE_URL ?>create.php">Clique aqui para adicionar</a>
         </p>
     <?php } ?>

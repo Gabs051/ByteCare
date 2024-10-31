@@ -4,16 +4,8 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 ?>
-
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/bytecare/css/sobreStyle.css">
-</head>
-<body>
+<title>Document</title>
+<link rel="stylesheet" href="/bytecare/css/sobreStyle.css">
     <div class="about-container">
         <div class="about-title">
             <h1>Sobre a ByteCare</h1>
@@ -49,9 +41,6 @@
             </p>
         </div>
     </div>
-</body>
-</html>
-
 <?php 
     include_once $_SERVER['DOCUMENT_ROOT'] . '/byteCare/templates/footer.php';
 ?>
