@@ -15,8 +15,9 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Client Manager</title>
+    <title>Gerenciar Cliente</title>
     <link rel="stylesheet" href="/bytecare/css/client.css?v=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-pZDUcVg6gbh0DLtOhFVJ6aKNWVp0S2ZZ0FsU5JY0wxyQXj1HGfRydkL1kAvk4J7k" crossorigin="anonymous">
 </head>
 <body>
     <h1 class="text-center">Gerenciar Clientes</h1>
@@ -44,9 +45,16 @@ try {
                         <td><?= htmlspecialchars($client['LASTNAME']) ?></td>
                         <td><?= htmlspecialchars($client['PHONE']) ?></td>
                         <td class="actions">
-                            <a href="<?= $BASE_URL ?>edit.php?id=<?= htmlspecialchars($client['id']) ?>">
+                            <a href="<?= $BASE_URL ?>editClient.php?id=<?= htmlspecialchars($client['id']) ?>">
                                 <i class="fas fa-edit edit-icon"></i>
                             </a>
+                            <form action="<?= $BASE_URL?>processClient.php" method="post" style="display: inline;">
+                                <input type="hidden" name="id" value="<?= htmlspecialchars($client['id']); ?>">
+                                <input type="hidden" name="process" value="delete">
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir este cliente?')">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 <?php } ?>
@@ -64,11 +72,11 @@ try {
             const tableBody = document.getElementById("table-body");
             const pagination = document.getElementById("pagination");
             const rows = Array.from(tableBody.querySelectorAll("tr"));
-            const totalPages = Math.cell(rows.length / rowPerPage);
+            const totalPages = Math.ceil(rows.length / rowPerPage);
 
             function displayPage(page) {
                 tableBody.innerHTML = "";
-                let start = (page - 1) * rowsPerPage;
+                let start = (page - 1) * rowPerPage;
                 let end = start + rowPerPage;
                 let paginatedRows = rows.slice(start, end);
 

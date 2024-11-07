@@ -60,7 +60,7 @@ try {
                         <td><?= htmlspecialchars($service_order['id_client']) ?></td>
                         <td><?= htmlspecialchars($service_order['id_employee']) ?></td>
                         <td class="actions">
-                            <a href="<?= $BASE_URL ?>edit.php?id=<?= htmlspecialchars($service_order['id']) ?>">
+                            <a href="<?= $BASE_URL ?>editOS.php?id=<?= htmlspecialchars($service_order['id']) ?>">
                                 <i class="fas fa-edit edit-icon"></i>
                             </a>
                         </td>
