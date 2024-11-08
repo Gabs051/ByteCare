@@ -63,7 +63,7 @@ try {
         </table>
     <?php } else { ?>
         <p class="empty-list-text">Ainda não há clientes cadastrados! 
-            <a href="<?= $BASE_URL ?>create.php">Clique aqui para adicionar</a>
+            <a href="<?= $BASE_URL ?>createClient.php">Clique aqui para adicionar</a>
         </p>
     <?php } ?>
     <script>

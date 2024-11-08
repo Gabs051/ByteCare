@@ -16,7 +16,7 @@
         <label for="expected_delivery_date">Data prevista para Entrega:</label>
         <input type="text" name="expected_delivery_dat" id="expected_delivery_date" placeholder="07/06/24" required>
         <label for="responsible_tech">Técnico Responsável:</label>
-        <input type="responsible_tech" name="responsible_tech" id="responsible_tech" placeholder="Pedro Silva" required>
+        <input type="text" name="responsible_tech" id="responsible_tech" placeholder="Pedro Silva" required>
         <label for="stat_service">Status do Serviço:</label>
         <input type="text" name="stat_service" id="stat_service" placeholder="Em Andamento" required>
         <label for="cust">Custo: R$</label>

@@ -69,11 +69,7 @@ try {
             </tbody>
             <div class="pagination" id="pagination"></div>
         </table>
-    <?php } else { ?>
-        <p class="empty-list-text">Ainda não há Ordem de Serviços cadastradas! 
-            <a href="<?= $BASE_URL ?>create.php">Clique aqui para adicionar</a>
-        </p>
-    <?php } ?>
+    <?php } ?>  
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const rowPerPage = 10;

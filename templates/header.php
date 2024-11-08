@@ -42,7 +42,7 @@
                     <ul class="dropdown">
                         <li><a href="/bytecare/cadastro/client.php">Clientes</a></li>
                         <li><a href="/bytecare/cadastro/OS.php">O. de Serviço</a></li>
-                        <li><a href="/bytecare/cadastro/cadastroUser.php">Usuários</a></li>
+                        <li><a href="/bytecare/cadastro/employee.php">Usuários</a></li>
                     </ul>
                 </li>
                 <li class="drop">
