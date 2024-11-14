@@ -41,7 +41,7 @@
                     <a href="#">Gerenciar</a>
                     <ul class="dropdown">
                         <li><a href="/bytecare/cadastro/client.php">Clientes</a></li>
-                        <li><a href="/bytecare/cadastro/OS.php">O. de Serviço</a></li>
+                        <li><a href="/bytecare/cadastro/createOS.php">O. de Serviço</a></li>
                         <li><a href="/bytecare/cadastro/employee.php">Usuários</a></li>
                     </ul>
                 </li>
