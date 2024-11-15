@@ -24,7 +24,7 @@
             $name = isset($_POST['name']) ? trim($_POST['name']) : '';
             $lastname = isset($_POST['lastname']) ? trim($_POST['lastname']) : '';
             $department = isset($_POST['department']) ? trim($_POST['department']) : '';
-            $password = isset($_POST['password']) ? trim($_POST['password']) : '';
+            $password = isset($_POST['password']) ? password_hash(trim($_POST['password']), PASSWORD_DEFAULT) : ''; // Aplica hash à senha
             $phone = isset($_POST['phone']) ? trim($_POST['phone']) : '';
             $email = isset($_POST['email']) ? trim($_POST['email']) : '';
 

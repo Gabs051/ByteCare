@@ -49,7 +49,7 @@
                     <a href="#">Relatórios</a>
                     <ul class="dropdown">
                         <li><a href="#">Clientes</a></li>
-                        <li><a href="#">Serviços</a></li>
+                        <li><a href="/bytecare/cadastro/OS.php">Serviços</a></li>
                     </ul>
                 </li>
                 <li><a href="/bytecare/sobre/sobre.php">Sobre</a></li>
