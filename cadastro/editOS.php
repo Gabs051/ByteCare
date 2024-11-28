@@ -1,6 +1,54 @@
 <?php 
     include_once $_SERVER['DOCUMENT_ROOT'] . '/bytecare/templates/header.php';
 
+    // Prepara e executa a primeira consulta
+    $stmt_statService = $connect -> prepare("SELECT stat_service FROM stat_service");
+    $stmt_statService->execute();
+    $resultStatService = $stmt_statService -> get_result();
+
+    // Array para armazenar todos os resultados de stat_service
+    $statServices = [];
+    while ($rowSS = $resultStatService->fetch_assoc()) {
+        $statServices[] = $rowSS;
+    }
+    $stmt_statService -> free_result(); // Libera o resultado após o uso
+    $stmt_statService -> close(); // Fecha a consulta
+
+    // Prepara e executa a segunda consulta
+    $stmt_typeService = $connect->prepare("SELECT type_service FROM type_service");
+    $stmt_typeService -> execute();
+    $resultTypeService = $stmt_typeService -> get_result();
+
+    // Array para armazenar todos os resultados de type_service
+    $typeServices = [];
+    while ($rowTS = $resultTypeService -> fetch_assoc()) {
+        $typeServices[] = $rowTS;
+    }
+    $stmt_typeService -> free_result(); // Libera o resultado após o uso
+    $stmt_typeService-> close(); // Fecha a consulta
+
+    $stmt_idClient = $connect -> prepare("SELECT id, NAME, LASTNAME FROM client");
+    $stmt_idClient -> execute();
+    $resutlIdClient = $stmt_idClient -> get_result();
+
+    $idClient = [];
+    while ($rowIDC = $resutlIdClient -> fetch_assoc()) {
+        $idClient[] = $rowIDC;
+    }
+    $stmt_idClient -> free_result();
+    $stmt_idClient -> close();
+
+    $stmt_idEmployee = $connect -> prepare("SELECT * FROM employees WHERE DEPARTMENT = 'tecnico'");
+    $stmt_idEmployee -> execute();
+    $resultIdEmployee = $stmt_idEmployee -> get_result();
+
+    $idEmployee = [];
+    while ($rowIDE = $resultIdEmployee -> fetch_assoc()) {
+        $idEmployee[] = $rowIDE;
+    }
+    $stmt_idEmployee -> free_result();
+    $stmt_idEmployee -> close();
+
     $id = $_GET['id'];
     if (!is_int($id)) {
         $id = intval($id);
@@ -12,6 +60,7 @@
 
     $result = $stmt -> get_result();
     $row = $result -> fetch_assoc();
+    $stmt -> close();
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -26,7 +75,7 @@
         <h2>Editar Ordem de Servços</h2>
         <form action="<?= $BASE_URL?>processOS.php" method="post">
             <label for="equipment">Equipamento:</label>
-            <input type="text" name="equipamento" id="equipment" placeholder="CPU" required value="<?= $row['equipment']; ?>">
+            <input type="text" name="equipment" id="equipment" placeholder="CPU" required value="<?= $row['equipment']; ?>">
 
             <label for="equipment_description">Descrição do Equipamento:</label>
             <input type="text" name="equipment_description" id="equipment_description" placeholder="Descrição do Equipamento" required value="<?= $row['equipment_description']; ?>">
@@ -42,41 +91,37 @@
 
             <label for="stat_service">Status do Serviço:</label>
             <select name="stat_service" id="stat_service" required>
-                <option value="Aguardando Aprovação" <?= $row['stat_service'] === 'Aguardando Aprovação' ? 'selected' : ''; ?>>Aguardando Aprovação</option>
-                <option value="Aguardando Peça" <?= $row['stat_service'] === 'Aguardando Peça' ? 'selected' : ''; ?>>Aguardando Peça</option>
-                <option value="Em andamento" <?= $row['stat_service'] === 'Em andamento' ? 'selected' : ''; ?>>Em andamento</option>
-                <option value="Aguardando Retirada" <?= $row['stat_service'] === 'Aguardando Retirada' ? 'selected' : ''; ?>>Aguardando Retirada</option>
-                <option value="Concluído" <?= $row['stat_service'] === 'Concluído' ? 'selected' : ''; ?>>Concluído</option>
-                <option value="Cancelado" <?= $row['stat_service'] === 'Cancelado' ? 'selected' : ''; ?>>Cancelado</option>
-                <option value="Aguardando orçamento" <?= $row['stat_service'] === 'Aguardando orçamento' ? 'selected' : ''; ?>>Aguardando orçamento</option>
-                <option value="Não Aprovado" <?= $row['stat_service'] === 'Não Aprovado' ? 'selected' : ''; ?>>Não Aprovado</option>
-                <option value="Garantia" <?= $row['stat_service'] === 'Garantia' ? 'selected' : ''; ?>>Garantia</option>
-                <option value="Não Aprovado" <?= $row['stat_service'] === 'Não Aprovado' ? 'selected' : ''; ?>>Não Aprovado</option>
+                <?php foreach ($statServices as $stat_service) { ?>
+                    <option value="<?= $stat_service['stat_service'] ?>" <?= $stat_service['stat_service'] === $row['stat_service'] ? 'selected' : ''; ?> > <?= $stat_service['stat_service'] ?> </option>
+                <?php } ?>
             </select>
             
             <label for="cust">Custo: </label>
-            <input type="text" name="cust" id="cust" placeholder="R$150,00" requiredvalue="<?= $row['cust']; ?>">
+            <input type="text" name="cust" id="cust" placeholder="R$150,00" required value="<?= $row['cust']; ?>">
 
             <label for="type_service">Tipo do Serviço:</label>
             <select name="type_service" id="type_service" required>
-                <option value="Formatação" <?= $row['type_service'] === 'Formatação' ? 'selected' : ''; ?>>Formatação</option>
-                <option value="Limpeza" <?= $row['type_service'] === 'Limpeza' ? 'selected' : ''; ?>>Limpeza</option>
-                <option value="Instalação" <?= $row['type_service'] === 'Instalação' ? 'selected' : ''; ?>>Instalação</option>
-                <option value="Suporte" <?= $row['type_service'] === 'Suporte' ? 'selected' : ''; ?>>Suporte</option>
-                <option value="Reposição de peça" <?= $row['type_service'] === 'Reposição de peça' ? 'selected' : ''; ?>>Reposição de peça</option>
-                <option value="Manutenção" <?= $row['type_service'] === 'Manutenção' ? 'selected' : ''; ?>>Manutenção</option>
-                <option value="Outros" <?= $row['type_service'] === 'Outros' ? 'selected' : ''; ?>>Outros</option>
+            <?php foreach ($typeServices as $type_service) { ?>
+                <option value="<?= $type_service['type_service'] ?>" <?= $type_service['type_service'] === $row['type_service'] ? 'selected' : ''; ?> > <?= $type_service['type_service'] ?> </option>
+            <?php } ?>
            <select>
-
 
             <label for="delivery_date">Data de Entrega:</label>
             <input type="text" name="delivery_date" id="delivery_date" placeholder="16/01/2025" required value="<?= $row['delivery_date']; ?>">
 
             <label for="id_client">Id do Cliente:</label>
-            <input type="text" name="id_client" id="id_client" placeholder="2" required value="<?= $row['id_employee']; ?>">
+            <select name="id_client" id="id_client" required>
+                <?php foreach ($idClient as $id_client) { ?>
+                    <option value="<?= $id_client['id'] ?>" <?= $id_client['id'] === $row['id_client'] ? 'selected' : ''; ?> > <?= $id_client['id'] . ": " .  $id_client['NAME'] . " " . $id_client['LASTNAME']?> </option>
+                <?php } ?>
+            </select>
 
             <label for="id_employee">Id do Funcionário:</label>
-            <input type="text" name="id_employee" id="id_employee" placeholder="1" required value="<?= $row['id_client']; ?>">
+            <select name="id_employee" id="id_employee" required>
+                <?php foreach ($idEmployee as $id_employee) { ?>
+                    <option value="<?= $id_employee['ID'] ?>" <?= $id_employee['ID'] === $row['id_employee'] ? 'selected' : ''; ?> > <?= $id_employee['ID'] . ": " .  $id_employee['NAME'] . " " . $id_employee['LASTNAME']?> </option>
+                <?php } ?>
+            </select>
 
             <input type="hidden" name="process" value="edit">
             <input type="hidden" name="id" value="<?= $id; ?>">

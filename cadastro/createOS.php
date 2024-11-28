@@ -38,13 +38,13 @@
     $stmt_idClient -> free_result();
     $stmt_idClient -> close();
 
-    $stmt_idEmployee = $connect -> prepare("SELECT id, NAME, LASTNAME FROM employees WHERE DEPARTMENT = 'tecnico'");
+    $stmt_idEmployee = $connect -> prepare("SELECT * FROM employees WHERE DEPARTMENT = 'tecnico'");
     $stmt_idEmployee -> execute();
     $resultIdEmployee = $stmt_idEmployee -> get_result();
 
     $idEmployee = [];
     while ($rowIDE = $resultIdEmployee -> fetch_assoc()) {
-        $idEmployee[] = $rowIDC;
+        $idEmployee[] = $rowIDE;
     }
     $stmt_idEmployee -> free_result();
     $stmt_idEmployee -> close();
@@ -62,7 +62,7 @@
 <body>
     <div class="form-container">
     <h2>Nova Ordem de Serviço</h2>
-    <form action="<?= $BASE_URL ?>processServiceOrder.php" method="post">
+    <form action="<?= $BASE_URL ?>processOS.php" method="post">
 
         <label for="equipment">Equipamento:</label>
         <input type="text" name="equipment" id="equipment" placeholder="Descrição do Equipamento" required>
@@ -109,9 +109,11 @@
         <label for="id_employee"> ID do Técnico: </label>
         <select name="id_employee" id="id_employee" required>
             <?php foreach ($idEmployee as $id_employee) { ?>
-                <option value="<?= $id_employee['id'] ?>"> <?= $id_employee['id'] . ": " .  $id_employee['NAME'] . " " . $id_employee['LASTNAME']?> </option>
+                <option value="<?= $id_employee['ID'] ?>"> <?= $id_employee['ID'] . ": " .  $id_employee['NAME'] . " " . $id_employee['LASTNAME']?> </option>
             <?php } ?>
         </select>
+
+        <input type="hidden" name="process" value="create">
         <input type="submit" value="Salvar Ordem de Serviço">
     </form>      
     </div>
