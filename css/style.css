@@ -1,0 +1,372 @@
+/* Reseta margens e paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Fira Code', sans-serif !important;
+    background-color: #363062 !important;
+    color: #F5F5F5 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100vh !important;
+    margin: 0 !important;
+}
+
+
+header {
+    width: 100%;
+}
+
+nav.nav {
+    background: #4D4C7D;
+    box-shadow: 0 0 40px rgba(54, 48, 98, 0.8);
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    padding: 0; /* Removendo padding do ul */
+}
+
+nav ul li {
+    position: relative;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 15px;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #F99417;
+    border-radius: 5px;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    background-color: #4D4C7D;
+    top: 100%;
+    left: 0;
+    width: 150px; /* Diminuído para uma largura mais compacta */
+    border-radius: 5px;
+    z-index: 1000;
+    padding: 5px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.dropdown li {
+    width: 100%;
+    padding: 0; /* Removendo padding do li */
+}
+
+.dropdown li a {
+    color: #fff;
+    padding: 10px; /* Mantendo padding para os links */
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.dropdown li a:hover {
+    background-color: #F99417;
+}
+
+.fixed {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+@media (max-width: 600px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav ul li {
+        margin-right: 0;
+    }
+    
+    .dropdown {
+        width: 100%;
+        left: 0;
+    }
+}
+
+/* Adicionando os estilos do footer no arquivo style.css */
+
+.footer-class {
+    background-color: #4D4C7D;
+    padding: 20px;
+    color: #F5F5F5;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    clear: both;
+    margin-top: auto;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.footer-content div {
+    margin: 10px;
+}
+
+.footer-class i {
+    margin-right: 8px;
+    color: #F99417;
+}
+
+.footer-class a {
+    color: #F99417;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-class a:hover {
+    color: #FFAE42;
+}
+
+.footer-class a i {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.footer-class a:hover i {
+    transform: scale(1.2);
+}
+
+.footer-class .social-media a i {
+    font-size: 24px;
+}
+
+.footer-class h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .footer-content {
+        flex-direction: column;
+    }
+}
+
+/* Estilo para a página "Sobre" */
+.about-container {
+    background-color: #4D4C7D;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 40px rgb(54, 48, 98);
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.about-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.about-title h1 {
+    font-size: 32px;
+    color: #F99417;
+}
+
+.about-content h2 {
+    font-size: 24px;
+    margin: 20px 0 10px;
+}
+
+.about-content p, .about-content ul {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.about-content ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.about-content ul li {
+    margin-bottom: 10px;
+}
+
+/* Estilo geral para tabelas */
+#clients-table {
+    width: 100%;
+    max-width: 700px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+#clients-table th, #clients-table td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #DDD;
+    background-color: #4D4C7D;
+    color: #F5F5F5;
+}
+
+#clients-table th {
+    background-color: #363062;
+    font-weight: bold;
+}
+
+#clients-table tr:nth-child(even) {
+    background-color: #403D64;
+}
+
+/* Botão de criação de cliente */
+.create-button button {
+    background-color: #F99417;
+    color: #FFF;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 20px 0;
+}
+
+.create-button button:hover {
+    background-color: #FFAE42;
+}
+
+/* Estilo para a paginação */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    background-color: #F99417;
+    color: #FFF;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0 5px;
+}
+
+.pagination button:hover {
+    background-color: #FFAE42;
+}
+
+.pagination button.active {
+    background-color: #FFAE42;
+    font-weight: bold;
+    cursor: default;
+}
+
+/* Estilos adicionais gerais */
+body {
+    font-family: 'Fira Code', sans-serif;
+    background-color: #363062;
+    color: #F5F5F5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1.text-center {
+    color: #F99417;
+    margin-top: 80px;
+}
+
+.empty-list-text {
+    text-align: center;
+    margin: 20px;
+    color: #F5F5F5;
+}
+
+.empty-list-text a {
+    color: #F99417;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.empty-list-text a:hover {
+    color: #FFAE42;
+}
+
+/* Ajustando estilo de ações */
+.actions a {
+    color: #F99417;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.actions i {
+    font-size: 18px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+}
+
+.action a i {
+    color: #F99417;
+}
+
+.actions a:hover i {
+    color: #FFAE42;
+    transform: scale(1.2);
+}
+
+.actions form button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: #F99417;
+    font-size: 18px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.actions form button:hover {
+    color: #FFAE42;
+    transform: scale(1.2);
+}
+
+.action form button i{
+    color: inherit;
+    pointer-events: none;
+}
+
+.actions form button:hover i {
+    color: inherit;
+}

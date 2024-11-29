@@ -12,6 +12,7 @@
 
     $result = $stmt -> get_result();
     $row = $result -> fetch_assoc();
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">

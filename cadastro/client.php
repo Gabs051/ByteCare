@@ -9,17 +9,6 @@ try {
     echo "Erro ao carregar clientes: " . $e->getMessage();
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciar Cliente</title>
-    <link rel="stylesheet" href="/bytecare/css/client.css?v=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-pZDUcVg6gbh0DLtOhFVJ6aKNWVp0S2ZZ0FsU5JY0wxyQXj1HGfRydkL1kAvk4J7k" crossorigin="anonymous">
-</head>
-<body>
     <h1 class="text-center">Gerenciar Clientes</h1>
     <div class="text-center">
         <a href="<?= $BASE_URL ?>createClient.php" class="create-button">
@@ -98,9 +87,6 @@ try {
             displayPage(1);
         });
     </script>
-</body>
-</html>
-
 <?php 
 include_once $_SERVER['DOCUMENT_ROOT'] . '/byteCare/templates/footer.php';
 ?>

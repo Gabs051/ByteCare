@@ -19,8 +19,8 @@
             <label for="lastname">LastName:</label>
             <input type="text" name="lastname" id="lastname" placeholder="Lastname" required>
             
-            <label for="departament">Department:</label>
-            <select name="departament" id="departament" required>
+            <label for="department">Department:</label>
+            <select name="department" id="department" required>
                 <option value="administrador">Administrador</option>
                 <option value="secretaria">Secretaria</option>
                 <option value="tecnico">Técnico</option>
